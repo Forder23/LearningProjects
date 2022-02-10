@@ -1,0 +1,32 @@
+﻿.col-md-6{
+    position:relative;
+    margin:auto;
+    top: 70px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.headerTextClass{
+    font-family: Arial;
+    font-size:20px;
+    font-style:oblique;
+}
+
+.loginForm{
+    background-color: rgb(240,240,240);
+    border-radius: 5px;
+}
+
+.signInUpButton{
+    width:150px;
+}
+
+.registerButton{
+    position:absolute;
+    right: 30px;
+}
+
+
+.error {
+    border-color: red;
+}

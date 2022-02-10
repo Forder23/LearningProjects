@@ -1,0 +1,40 @@
+﻿@model AppointmentSchedule.API.Models.ViewModels.LoginViewModel
+  
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="headerTextClass">Log In</h2>
+        <form asp-controller="Account" asp-action="Register" method="post" class="loginForm">
+            <div style="padding:10px;">
+                <label>Email</label>
+                <input asp-for="@Model.Email" type="text" placeholder="Enter email" class="form-control" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div style="padding:10px;">
+                <label>Password</label>
+                <input asp-for="@Model.Password" type="password" placeholder="Enter password"
+                       class="form-control" />
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div style="padding:10px;">
+                <label>Remember me?</label>
+                <input type="checkbox" asp-for="@Model.RememberMe" />
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="signRegisterClass" style="padding:10px;">
+                <input type="submit" asp-controller="Account" asp-action="SignIn" class="signInUpButton" value="Sign In" />
+                <a asp-controller="Account" asp-action="Register" class="registerButton">Ready to Sign Up?!</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+   @{ <partial name="_ValidationScriptsPartial" />} 
+}
+
+

@@ -1,0 +1,72 @@
+﻿@using AppointmentSchedule.API.Helper_Extension; 
+@model AppointmentSchedule.API.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8" style="margin-top:70px;">
+        @if (User.IsInRole(Helper.Admin))
+        {
+            <h2 class="headerTextClass">Create new Administrator account</h2>
+        }
+        else
+        {
+            <h2 class="headerTextClass">Create your account</h2>
+        }
+        <form asp-controller="Account" asp-action="Register" method="post" class="registerForm">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="personalInfoClass">
+                        <div>
+                            <label>First name:</label>
+                            <input asp-for="@Model.FirstName" type="text" placeholder="Enter first name.." class="form-control" />
+                            <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="marginTopDivClass">
+                            <label>Last name:</label>
+                            <input asp-for="@Model.LastName" type="text" placeholder="Enter last name.." class="form-control" />
+                            <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                        </div>
+                        <div class="marginTopDivClass">
+                            <label>Email:</label>
+                            <input asp-for="@Model.Email" type="text" placeholder="Enter email address.." class="form-control" />
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div>
+                        <div class="marginTopDivClass">
+                            <label>Password:</label>
+                            <input asp-for="@Model.Password" type="password" placeholder="Enter password.." class="form-control" />
+                            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                        </div>
+                        <div class="marginTopDivClass">
+                            <label>Confirm password:</label>
+                            <input asp-for="@Model.ConfirmPassword" type="password" placeholder="Enter confirm password.." class="form-control" />
+                            <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="marginTopDivClass">
+                            <label>Role:</label>
+                            <select asp-for="@Model.RoleName"
+                                    asp-items="@AppointmentSchedule.API.Helper_Extension.Helper.GetRoles(User.IsInRole(Helper.Admin))"
+                                    class="form-control"></select>
+                            <span asp-validation-for="@Model.RoleName" class="text-danger"></span>
+                        </div>
+                        <div class="marginTopDivClass">
+                            <input type="submit" asp-controller="Account" asp-action="SignUp" class="signInUpButton" value="Sign Up" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    @{ <partial name="_ValidationScriptsPartial" />}
+}

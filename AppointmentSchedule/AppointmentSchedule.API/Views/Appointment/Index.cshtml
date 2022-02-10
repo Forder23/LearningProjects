@@ -1,0 +1,31 @@
+﻿@model AppointmentSchedule.API.Models.ViewModels.DoctorViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="offset-10">
+        <a asp-controller="Account" asp-action="Register" class="btn btn-info">Admin registration</a>
+    </div>
+    <div class="container">
+        <div class="col-4">
+            @if (User.IsInRole(AppointmentSchedule.API.Helper_Extension.Helper.Admin))
+            {
+                <label>Select Doctor</label>
+                @Html.DropDownList("doctorId", new SelectList(ViewBag.Doctors, "Id", "Name"),
+                                    new
+                                         {
+                                             @class = "form-control",
+                                          @onchange = "onDoctorChange()"
+                                         })
+            }
+        </div>
+        <br>
+        <div id="calendar"></div>
+    </div>
+</div>
+
+<partial name="_AddEditPartial" />
+
